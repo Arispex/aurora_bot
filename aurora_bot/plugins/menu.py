@@ -7,7 +7,7 @@ menu = on_command("菜单")
 
 @menu.handle()
 async def _(bot: Bot, event: GroupMessageEvent):
-    if event.group_id == config.group_id:  # 判断群号
+    if event.group_id in config.group_id:  # 判断群号
         services = ["在线", "服务器信息", "插件", "执行"]
 
         msg = "\n\n".join(services)

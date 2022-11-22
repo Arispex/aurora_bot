@@ -14,7 +14,7 @@ unbind = on_command("解除绑定")
 
 @bind.handle()
 async def _(bot: Bot, event: GroupMessageEvent, state: T_State, args: Message = CommandArg()):
-    if event.group_id == config.group_id:  # 判断群号
+    if event.group_id in config.group_id:  # 判断群号
         player_name = args.extract_plain_text()  # 获取命令
         if player_name:  # 语法是否正确
             player = utils.database.User.Get.by_qq(int(event.get_user_id()))
@@ -45,7 +45,7 @@ async def _(bot: Bot, event: GroupMessageEvent, state: T_State):
 
 @player_info.handle()
 async def _(bot: Bot, event: GroupMessageEvent, state: T_State, args: Message = CommandArg()):
-    if event.group_id == config.group_id:  # 判断群号
+    if event.group_id in config.group_id:  # 判断群号
         player_name = args.extract_plain_text()  # 获取填写的玩家昵称或QQ
         if player_name:  # 判断是否填写了玩家昵称（是否查询自己）
             if player_name.isdigit():  # 判断是昵称还是QQ号
@@ -64,7 +64,7 @@ async def _(bot: Bot, event: GroupMessageEvent, state: T_State, args: Message = 
 
 @unbind.handle()
 async def _(bot: Bot, event: GroupMessageEvent, state: T_State, args: Message = CommandArg()):
-    if event.group_id == config.group_id:  # 判断群号
+    if event.group_id in config.group_id:  # 判断群号
         if int(event.get_user_id()) in config.admins:  # 判断是否为管理员
             player_name = args.extract_plain_text()  # 获取填写的玩家昵称或QQ
             if player_name:  # 判断是否填写了玩家昵称（是否查询自己）

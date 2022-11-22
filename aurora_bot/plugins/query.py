@@ -13,7 +13,7 @@ plugin = on_command("插件")
 
 @online_players.handle()
 async def _(bot: Bot, event: GroupMessageEvent):
-    if event.group_id == config.group_id:  # 判断群号
+    if event.group_id in config.group_id:  # 判断群号
         server = utils.database.Server.get()
 
         query = server.server_query.query()
@@ -31,7 +31,7 @@ async def _(bot: Bot, event: GroupMessageEvent):
 
 @server_info.handle()
 async def _(bot: Bot, event: GroupMessageEvent):
-    if event.group_id == config.group_id:  # 判断群号
+    if event.group_id in config.group_id:  # 判断群号
         server = utils.database.Server.get()
 
         query = server.server_query.query()
@@ -52,7 +52,7 @@ async def _(bot: Bot, event: GroupMessageEvent):
 
 @plugin.handle()
 async def _(bot: Bot, event: GroupMessageEvent):
-    if event.group_id == config.group_id:  # 判断群号
+    if event.group_id in config.group_id:  # 判断群号
         server = utils.database.Server.get()
 
         query = server.server_query.query()

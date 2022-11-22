@@ -10,7 +10,7 @@ rcon = on_command("执行")
 
 @rcon.handle()
 async def _(bot: Bot, event: GroupMessageEvent, state: T_State, args: Message = CommandArg()):
-    if event.group_id == config.group_id:  # 判断群号
+    if event.group_id in config.group_id:  # 判断群号
         if int(event.get_user_id()) in config.admins:  # 判断是否为管理员
             command = args.extract_plain_text()  # 获取命令
             if command:
